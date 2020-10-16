@@ -12,5 +12,5 @@ public class UtilizandoBibliotecaAssertJ {
         Assertions.assertThat(resultadoSoma).isEqualTo(50);
     }
 
-    
+
 }
