@@ -11,11 +11,43 @@ public class CadastroPessoaTest {
         Assertions.assertThat(cadastro.getPessoas()).isEmpty();
     }
 
-//    @Test
-//    public void deveAdicionarUmaPessoa(){
-//        CadastroPessoas cadastro = new CadastroPessoas();
-//        Pessoa pessoa = new Pessoa();
-//        CadastroPessoas.adicionarPessoa(pessoa);
-//
-//    }
+    @Test
+    public void deveAdicionarUmaPessoa(){
+        CadastroPessoas cadastroPessoas = new CadastroPessoas();
+        Pessoa pessoa = new Pessoa();
+        pessoa.setNome("Alexsandra");
+
+        cadastroPessoas.adicionarPessoa(pessoa);
+
+        Assertions.assertThat(cadastroPessoas.getPessoas())
+                .isNotEmpty()
+                .hasSize(1)
+                .contains(pessoa);
+    }
+
+    @Test(expected = pessoaSemNomeNotException.class)
+    public void deveAdicionarPessoaNomeVazio(){
+        CadastroPessoas cadastroPessoas = new CadastroPessoas();
+        Pessoa pessoa = new Pessoa();
+        cadastroPessoas.adicionarPessoa(pessoa);
+
+    }
+    @Test
+    public void deveRemoverUmaPessoa(){
+        CadastroPessoas cadastroPessoas = new CadastroPessoas();
+        Pessoa pessoa = new Pessoa();
+        pessoa.setNome("Alexsandra");
+        cadastroPessoas.adicionarPessoa(pessoa);
+        cadastroPessoas.remover(pessoa);
+        Assertions.assertThat(cadastroPessoas.getPessoas()).isEmpty();
+
+    }
+
+    @Test(expected = cadastroVazioException.class)
+    public void deveLancarErroAoRemoverPessoaInexistente(){
+        CadastroPessoas cadastroPessoas = new CadastroPessoas();
+        Pessoa pessoa = new Pessoa();
+        cadastroPessoas.remover(pessoa);
+    }
+
 }
