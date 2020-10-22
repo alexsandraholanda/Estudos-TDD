@@ -1,7 +1,7 @@
 package org.example;
 
 import org.assertj.core.api.Assertions;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class Calculadora {
 
@@ -13,7 +13,7 @@ public class Calculadora {
             Assertions.assertThat(resultado).isEqualTo(35);
     }
 
-    @Test(expected = RuntimeException.class)
+    @Test//(expected = RuntimeException.class)
     public void naoDeveSomarNumerosNegativos(){
     CalculadoraParametros calcularSoma = new CalculadoraParametros();
         int numero1 = -15, numero2 = 15;
@@ -43,7 +43,7 @@ public class Calculadora {
             Assertions.assertThat(resultado).isEqualTo(2.5);
     }
 
-    @Test(expected = RuntimeException.class)
+    @Test//(expected = RuntimeException.class)
     public void naoDeveRealizarDivisaoPorZero(){
         CalculadoraParametros calcularDivisao = new CalculadoraParametros();
             double numero1 = 5,  numero2 = 0;

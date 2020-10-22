@@ -1,14 +1,14 @@
 package org.example;
 
 import org.assertj.core.api.Assertions;
-import org.junit.Before;
 import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
 
 public class CalculadoraRefatorada {
     CalculadoraOpcao calcular;
     int numero1 = 10, numero2 = 10, numero3 = -5, numero4 = 0;
 
-    @Before
+    @BeforeEach
     public void setUp() {
         calcular = new CalculadoraOpcao();
     }
@@ -19,9 +19,11 @@ public class CalculadoraRefatorada {
         Assertions.assertThat(resultado).isEqualTo(20);
     }
 
-    @Test(expected = RuntimeException.class)
+    @Test
     public void NaoDeveSomarDoisNumeros() {
-        calcular.somar(numero1, numero3);
+        org.junit.jupiter.api.Assertions
+                .assertThrows(RuntimeException.class,
+                        () -> calcular.somar(numero1, numero3));
     }
 
     @Test
@@ -42,9 +44,11 @@ public class CalculadoraRefatorada {
         Assertions.assertThat(resultado).isEqualTo(1);
     }
 
-    @Test(expected = RuntimeException.class)
+    @Test
     public void NaoDeveDividirNumerosPorZero() {
-        calcular.divisao(numero1, numero4);
+        org.junit.jupiter.api.Assertions
+                .assertThrows(RuntimeException.class,
+                        () -> calcular.divisao(numero1, numero4));
     }
 
 }
